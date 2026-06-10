@@ -1,0 +1,4 @@
+interface:
+  display_name: "Ultimate Skill Creator"
+  short_description: "Turn solved problems into GitHub-ready skills"
+  default_prompt: "Use $ultimate-skill-creator to package a solved workflow into a validated skill and GitHub publication candidate."
