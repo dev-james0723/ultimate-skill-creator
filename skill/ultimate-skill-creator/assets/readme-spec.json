@@ -1,0 +1,20 @@
+{
+  "version": "1.0.0",
+  "scope": "Ultimate Skill Creator house convention, not the Agent Skills runtime specification",
+  "sections": [
+    {"id": "installation", "heading": "Installation", "aliases": ["Install", "Setup"], "prompt": "TODO: Give one verified installation route, prerequisites, installation scope, and the actual skill directory. Do not invent a marketplace listing or execute remote installers."},
+    {"id": "quick-start", "heading": "Quick start", "aliases": ["Getting started"], "prompt": "TODO: Provide a copyable invocation using a small input, then describe the expected output and how to recognize success."},
+    {"id": "usage", "heading": "Usage", "aliases": ["Examples", "How it works"], "prompt": "TODO: Explain when to use this skill, when not to use it, inputs, outputs, and the main workflow. Add a linked catalog only for a collection."},
+    {"id": "compatibility", "heading": "Compatibility", "aliases": ["Requirements", "Prerequisites"], "prompt": "TODO: State host, OS, runtime, tools, credentials, and dependencies. Separate tested, expected, and untested support. Say explicitly when no dependency is needed."},
+    {"id": "safety", "heading": "Safety", "aliases": ["Security", "Permissions and privacy"], "prompt": "TODO: Describe file writes, network access, data handling, credentials, costs, and approval boundaries. No deletion, overwrite, publication, or installation without the relevant permission."},
+    {"id": "validation", "heading": "Validation", "aliases": ["Testing", "Verification"], "prompt": "TODO: Give actual checks, expected results, and evidence or an honest untested status. A README lint pass is not proof of skill behavior or security."},
+    {"id": "troubleshooting", "heading": "Troubleshooting", "aliases": ["Limitations", "Known limitations"], "prompt": "TODO: Describe known limits and a symptom/cause/fix. Explain safe update or removal when applicable; link deeper guidance instead of duplicating it."},
+    {"id": "license", "heading": "License", "aliases": ["License and attribution"], "prompt": "TODO: Obtain the owner's license decision and link the real license file. Attribute borrowed material and identify any per-skill or asset-specific terms. Never assume MIT."}
+  ],
+  "optional_sections": ["Skill catalog", "Configuration", "Architecture", "Benchmarks", "Contributing", "Changelog", "Translations"],
+  "languages": {
+    "en": "English", "zh-Hant": "繁體中文", "zh-Hans": "简体中文",
+    "es": "Español", "ja": "日本語", "pt": "Português", "hi": "हिन्दी",
+    "ar": "العربية", "fr": "Français", "ko": "한국어"
+  }
+}

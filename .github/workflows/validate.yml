@@ -1,0 +1,20 @@
+name: Validate skill documentation
+on:
+  push:
+    branches: [main]
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  readme-and-tests:
+    runs-on: ubuntu-24.04
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683 # v4.2.2
+        with:
+          persist-credentials: false
+      - name: Check Python and run regression tests
+        run: |
+          python3 --version
+          python3 -m unittest discover -s tests -v
+      - name: Lint repository README
+        run: python3 skill/ultimate-skill-creator/scripts/validate_readme.py README.md --strict --json

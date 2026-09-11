@@ -1,89 +1,46 @@
-# Ultimate Skill Creator Workflow
+# Ultimate Skill Creator workflow
 
-## 1. Understand the Solved Problem
+## 1. Understand the solved problem
 
-Capture:
+Capture the original goal, constraints, environment, permissions, failed attempts and their causes, working steps, validation evidence, and safety boundaries. Separate observed results from assumptions. Ask only for genuinely missing decisions, such as an unspecified publication target or license; reuse the user's existing explicit instructions.
 
-- the user's original goal
-- every hard constraint and non-negotiable instruction
-- the environment and permissions
-- the failure modes discovered
-- the final working path
-- validation evidence
-- safety boundaries
+## 2. Extract reusable knowledge
 
-Ask for clarification only when publication target, license, or sensitive details are ambiguous.
+| Destination | Contents |
+| --- | --- |
+| SKILL.md | Triggers, non-goals, actionable workflow, acceptance criteria, and safety rules. |
+| references/ | Detailed evidence, case histories, decisions, API notes, and troubleshooting, loaded when needed. |
+| scripts/ | Deterministic helpers with documented dependencies and regression tests. |
+| assets/ | Optional diagrams, images, templates, and shared specification data. |
+| agents/openai.yaml | Optional Codex presentation/invocation adapter. |
+| Repository README | Human purpose, installation, examples, expected outputs, compatibility, trust boundaries, verification, and license. |
 
-## 2. Extract Reusable Knowledge
+Do not dump a transcript into the runtime skill. Do not move an existing skill simply to match a preferred directory name.
 
-Classify content:
+## 3. Build the candidate
 
-- **SKILL.md**: short operational instructions that every future agent needs.
-- **references/**: long case history, decision trees, language variants, API notes, troubleshooting.
-- **scripts/**: deterministic helpers or templates that should not be rewritten from scratch.
-- **assets/**: generated images, icons, diagrams, screenshots, templates.
-- **repo README**: human-facing GitHub presentation, not part of the skill folder unless the skill is specifically about README generation.
+A new candidate uses `README.md` beside `skills/<name>/SKILL.md`, with optional references, scripts, assets, and adapters. Existing Ultimate Skill Creator installations retain this repository's `skill/ultimate-skill-creator/` path. Add a license file only after the owner selects the license; do not silently inherit this repository's MIT terms for a new user's material.
 
-## 3. Build the Candidate
+Run `scripts/create_skill_candidate.py` from the installed skill for a scaffold. All original CLI flags remain available. The output directory must not already exist. Replace every placeholder with the actual solved workflow; generation alone is not validation.
 
-Default structure:
+## 4. Write human documentation
 
-```text
-repo-candidate/
-├── README.md
-├── skills/
-│   └── skill-name/
-│       ├── SKILL.md
-│       ├── agents/openai.yaml
-│       ├── references/
-│       ├── scripts/
-│       └── assets/
-└── LICENSE
-```
+Read [the universal README convention](universal-readme-spec.md). Use its eight core content areas and only relevant optional modules. Verify the selected host's current installation documentation; a generic skill format does not imply that plugins, hooks, tools, or permissions are portable.
 
-Keep each skill folder clean. Avoid extra `CHANGELOG.md`, `INSTALL.md`, or README files inside the skill folder unless required.
+Follow [language guidance](language-and-readme.md). Advertise only real sections or translated files. Generated untranslated sections remain visibly marked as drafts until completed or removed. Keep required commands and machine-readable tokens literal across languages.
 
-## 4. Add Language Switching
+## 5. Package visuals when useful
 
-For Markdown, use anchor links:
+Use a visual to clarify output or a workflow, not as a required decoration. Keep a portable local fallback, useful alt text, and provenance. Inspect screenshots for personal information. The existing guide PNG and fallback SVG remain available in `assets/`.
 
-```markdown
-Language: [English](#english) | [繁體中文](#繁體中文) | [简体中文](#简体中文) | [Español](#español) | [日本語](#日本語)
-```
+## 6. Validate at separate levels
 
-Include at least English, Traditional Chinese, Simplified Chinese, Spanish, Japanese, Portuguese, Hindi, and Arabic for broad reach when the user requests popular languages.
+Run `python3 scripts/validate_readme.py /path/to/candidate/README.md --strict --json` from the installed skill directory. Resolve findings and manually review each section's truth and usefulness. The linter does not certify functionality or contact external URLs.
 
-## 5. Generate or Package Images
+Run the system skill-creator's `quick_validate.py` against the skill directory when available. Otherwise report that tool as not run, inspect frontmatter and relative references, and avoid claiming equivalent full validation. Test shipped scripts, including `--help`, happy paths, invalid input, and file-safety cases. Exercise at least one actual task in the intended host when available. Record environment, input, command, result, and untested areas.
 
-Use generated images for guide diagrams when useful. Always keep a self-contained fallback asset such as an SVG in `assets/` so the GitHub package remains portable.
+For this repository's generator/linter regression suite, run `python3 -m unittest discover -s tests -v` from the repository root.
 
-Recommended diagram types:
+## 7. Publish within authorization
 
-- problem-to-solution flow
-- keyboard shortcut / physical setup
-- decision tree
-- skill creation loop
-
-## 6. Validate
-
-Run:
-
-```bash
-python3 /path/to/skill-creator/scripts/quick_validate.py /path/to/skill-folder
-```
-
-Also run representative script checks, for example `python3 script.py --help`, `clang` compile checks, or shell syntax checks.
-
-## 7. Publish Safely
-
-Publication is external. Create the candidate locally, summarize it, and ask the user to confirm:
-
-- target GitHub account/repo
-- new repo or existing repo
-- visibility
-- branch name
-- commit message
-- direct push or draft PR
-
-Only push after explicit confirmation.
-
+Read [publication safety](github-publication.md). Inspect the diff, secrets, rights, tests, target, visibility, and intended branch. Current explicit authorization can cover a scoped update without asking the user to approve the same change again. Ask before actions outside that scope. Preserve unrelated files, respect branch protection, use a non-forced update, and verify the resulting remote commit. Report a draft PR as a PR, not as a change already live on the default branch.

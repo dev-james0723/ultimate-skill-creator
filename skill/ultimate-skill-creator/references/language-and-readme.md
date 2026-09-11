@@ -1,40 +1,31 @@
-# Language and README Patterns
+# Language and README patterns
 
-## Repository README Template
+Read [the universal README convention](universal-readme-spec.md) before generating or revising repository documentation. Its core content, optional modules, style, and review gates replace the previous short generic README template.
+
+## Languages
+
+The shared [specification data](../assets/readme-spec.json) supports English, Traditional Chinese, Simplified Chinese, Spanish, Japanese, Portuguese, Hindi, Arabic, French, and Korean. English is the generator's canonical version. Preserve the existing CLI's default five-language selection; the user can request one or more supported codes with `--languages`.
+
+A language section must actually exist before adding a navigation link. Generated locale sections are explicitly unfinished drafts, not purported translations. Complete them before publishing or remove both the section and its navigation link. When the user requests broad language coverage, offer the existing eight-language set: `en,zh-Hant,zh-Hans,es,ja,pt,hi,ar`. Do not produce unnecessary full translations for a small task.
+
+Use language names rather than flags. Prefer explicit stable anchors in new generated documents:
 
 ```markdown
-# Skill Pack Title
+Language: [English](#lang-en) | [繁體中文](#lang-zh-hant)
 
-Language: [English](#english) | [繁體中文](#繁體中文) | [简体中文](#简体中文) | [Español](#español) | [日本語](#日本語)
-
+<a id="lang-en"></a>
 ## English
 
-Short purpose, quick start, included skills, validation status.
+Purpose, installation, an example, expected result, and safety boundaries.
 
+<a id="lang-zh-hant"></a>
 ## 繁體中文
 
-用途、快速開始、包含技能、驗證狀態。
+用途、安裝方式、使用例子、預期結果同安全限制。
 ```
 
-## Short Language Labels
+Preserve existing working anchors when updating established repositories. For long translations, separate files are acceptable; link only files that exist. Keep commands, paths, environment variable names, frontmatter keys, and status tokens unchanged. Check that the source language and translations describe the same current behavior.
 
-- `en`: English
-- `zh-Hant`: 繁體中文
-- `zh-Hans`: 简体中文
-- `es`: Español
-- `ja`: 日本語
-- `pt`: Português
-- `hi`: हिन्दी
-- `ar`: العربية
-- `fr`: Français
-- `ko`: 한국어
+## Visuals and privacy
 
-## Human-Facing README Rules
-
-- State what the skill solves in the first 3 lines.
-- Add quick start before background.
-- Use screenshots or diagrams only when they reduce ambiguity.
-- Include validation status and known limitations.
-- Link to each `skills/<name>/SKILL.md`.
-- Do not publish private logs, account names, serial numbers, tokens, or personal identifiers.
-
+Use diagrams or screenshots only when they explain an output or important decision. Keep assets portable, give images useful alt text, and review rights and accidental personal information. Do not copy third-party tracking images or imply that an external badge proves local test success. The packaged SVG is a fallback; image generation is optional and requires an available image tool.
